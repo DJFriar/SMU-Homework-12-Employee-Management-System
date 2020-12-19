@@ -30,29 +30,27 @@ Design the following database schema containing three tables:
   
 Build a command-line application that at a minimum allows the user to:
 
-  * Add departments, roles, employees
+* Add departments, roles, employees
 
-  * View departments, roles, employees
+* View departments, roles, employees
 
-  * Update employee roles
+* Update employee roles
 
 Bonus points if you're able to:
 
-  * Update employee managers
+* Update employee managers
 
-  * View employees by manager
+* View employees by manager
 
-  * Delete departments, roles, and employees
+* Delete departments, roles, and employees
 
-  * View the total utilized budget of a department -- ie the combined salaries of all employees in that department
+* View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
 We can frame this challenge as follows:
 
-```
-As a business owner
-I want to be able to view and manage the departments, roles, and employees in my company
-So that I can organize and plan my business
-```
+> As a business owner
+> I want to be able to view and manage the departments, roles, and employees in my company
+> So that I can organize and plan my business
 
 How do you deliver this? Here are some guidelines:
 
@@ -124,14 +122,13 @@ Follow these guidelines for committing:
 
 We would like you to have well over 200 commits by graduation, so commit early and often!
 
-
 ## Submission on BCS
 
 You are required to submit the following:
 
 * The URL of the GitHub repository
 
-* A video demonstrating the entirety of the app's functionality 
+* A video demonstrating the entirety of the app's functionality
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
