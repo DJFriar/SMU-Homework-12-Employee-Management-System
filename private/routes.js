@@ -71,3 +71,9 @@ connection.connect(function(err) {
   });
 
 };
+
+// Functions
+function quitApplication() {
+  connection.end();
+}
+
