@@ -1,27 +1,10 @@
 const path = require("path");
 const fs = require("fs");
-const mysql = require("mysql");
+const db = require("./db");
+const tools = require("./tools");
 const cTable = require('console.table');
 
 module.exports = function(app) {
-
-  // MySQL DB Connection Information
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "password",
-  database: "employee_cms_db"
-});
-
-// Initiate MySQL Connection.
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
-});
 
   // ===============================================================================
   // API ROUTES
@@ -29,35 +12,25 @@ connection.connect(function(err) {
 
   // GET Requests
   app.get("/all-employees", function(req, res) {
-    connection.query("SELECT * FROM employee", function(err, res) {
-      if (err) throw err;
-      console.table(res);
-    });
+    tools.viewAllEmployees();
   });
 
   app.get("/all-departments", function(req, res) {
-    connection.query("SELECT * FROM department", function(err, res) {
-      if (err) throw err;
-      console.table(res);
-    });
+    tools.viewAllDepartments();
   });
 
   app.get("/all-roles", function(req, res) {
-    connection.query("SELECT * FROM role", function(err, res) {
-      if (err) throw err;
-      console.table(res);
-    });
+    tools.viewAllRoles();
   });
 
   // API POST Requests
-
 
   // ===============================================================================
   // TEST USE ONLY
   // ===============================================================================
 
   app.get("*", function(req, res) {
-    connection.query("SELECT 1", function(err, result) {
+    db.connection.query("SELECT 1", function(err, result) {
       if (err) throw err;
       var html = "<h1> Choose one of the following to test:</h1>";
       html += "<ul>";
@@ -73,7 +46,13 @@ connection.connect(function(err) {
 };
 
 // Functions
-function quitApplication() {
-  connection.end();
-}
+
+
+function viewAllEmployees() {
+  db.connection.query("SELECT * FROM employee", function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    cmsMain();
+  });
+};
 
