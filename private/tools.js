@@ -166,7 +166,7 @@ function cmsMain() {
       type: 'list',
       name: 'actionChoice',
       message: 'What would you like to do?',
-      choices: ["View All Employees", "View Employees by Manager", "Add New Employee", "View All Departments", "View Department Budget Spent", "Add New Department", "View All Roles", "Add New Role", "Exit Application"]
+      choices: ["View All Employees", "View Employees by Manager", "Add New Employee", "Update Employee's Role", "View All Departments", "View Department Budget Spent", "Add New Department", "View All Roles", "Add New Role", "Exit Application"]
     },
   ])
   .then(function (res) {
@@ -179,6 +179,9 @@ function cmsMain() {
         break;
       case "Add New Employee":
         addNewEmployee();
+        break;
+      case "Update Employee's Role":
+        updateEmployeeRole();
         break;
       case "View All Departments":
         viewAllDepartments();
