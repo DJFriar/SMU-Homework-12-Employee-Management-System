@@ -1,6 +1,5 @@
 const db = require("./db");
 const inquirer = require("inquirer");
-const e = require("express");
 
 function viewAllEmployees() { 
   db.connection.query("SELECT * FROM employee", function(err, res) {
@@ -75,7 +74,7 @@ function addNewEmployee() {
     },
     function(err, res) {
       if (err) throw (err);
-      cmsMain();
+      viewAllEmployees();
     });
   });
 };
@@ -95,7 +94,7 @@ function addNewDepartment() {
     },
     function(err, res) {
       if (err) throw (err);
-      cmsMain();
+      viewAllDepartments();
     });
   });
 };
@@ -127,7 +126,7 @@ function addNewRole() {
     },
     function(err, res) {
       if (err) throw (err);
-      cmsMain();
+      viewAllRoles();
     });
   });
 };
@@ -149,7 +148,29 @@ function updateEmployeeRole() {
     db.connection.query("UPDATE employee SET role_id=? WHERE id=?",[res.role, res.employee],
     function(err, res) {
       if (err) throw (err);
-      cmsMain();
+      viewAllEmployees();
+    });
+  });
+};
+
+function updateEmployeeMgr() {
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "employee",
+      message: "What employee would you like to update? (Enter Emp ID number)",
+    },
+    {
+      type: "input",
+      name: "manager",
+      message: "Who should this employee report to? (Enter Manager ID number)",
+    },
+  ])
+  .then(function (res) {
+    db.connection.query("UPDATE employee SET manager_id=? WHERE id=?",[res.manager, res.employee],
+    function(err, res) {
+      if (err) throw (err);
+      viewAllEmployees();
     });
   });
 };
@@ -157,6 +178,7 @@ function updateEmployeeRole() {
 function quitApplication() {
   db.connection.end();
   console.log("Application Terminated");
+  process.exit(0);
 };
 
 // Inquirer
@@ -166,7 +188,8 @@ function cmsMain() {
       type: 'list',
       name: 'actionChoice',
       message: 'What would you like to do?',
-      choices: ["View All Employees", "View Employees by Manager", "Add New Employee", "Update Employee's Role", "View All Departments", "View Department Budget Spent", "Add New Department", "View All Roles", "Add New Role", "Exit Application"]
+      choices: ["View All Employees", "View Employees by Manager", "Add New Employee", "Update Employee's Role", "Update Employee's Manager", "View All Departments", "View Department Budget Spent", "Add New Department", "View All Roles", "Add New Role", "Exit Application", new inquirer.Separator()],
+      loop: 'false',
     },
   ])
   .then(function (res) {
@@ -182,6 +205,9 @@ function cmsMain() {
         break;
       case "Update Employee's Role":
         updateEmployeeRole();
+        break;
+      case "Update Employee's Manager":
+        updateEmployeeMgr();
         break;
       case "View All Departments":
         viewAllDepartments();

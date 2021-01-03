@@ -14,6 +14,7 @@ Put YouTube Video Link Here
 
 - Musical Soundtrack: [Summer Music Mix 2020 #4 by Eric Clapman](https://www.youtube.com/watch?v=cwfEkoHPw-o)
 - Console.Table [NPM](https://www.npmjs.com/package/console.table)
+- MySQL Inner Join [MySQLTutorial](https://www.mysqltutorial.org/mysql-inner-join.aspx/)
 
 ## License
 
