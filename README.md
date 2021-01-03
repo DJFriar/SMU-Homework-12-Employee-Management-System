@@ -8,7 +8,7 @@ Download the repo, run `npm i` and then `node server.js`.
 
 ## Usage
 
-Put YouTube Video Link Here
+[YouTube Video](https://youtu.be/e675gDbPerc)
 
 ## Credits
 
